@@ -21,7 +21,7 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
  * 主要是构造Job对象实例
  * 指定各种组件属性：mapper、reducer类，输入输出的数据类型，输入输出的数据路径，提交job作业（job.submit()）
  */
-public class ComentSumDriver {
+public class CommentSumDriver {
 
     public static void main(String[] args) throws Exception {
 
@@ -29,10 +29,10 @@ public class ComentSumDriver {
         Configuration conf = new Configuration();
 
         //构造job作业的实例,参数（配置对象，job名字）
-        Job job = Job.getInstance(conf, ComentSumDriver.class.getSimpleName());
+        Job job = Job.getInstance(conf, CommentSumDriver.class.getSimpleName());
 
         //设置mr程序运行的主类
-        job.setJarByClass(ComentSumDriver.class);
+        job.setJarByClass(CommentSumDriver.class);
 
         //设置本次mr程序的mapper类型、reducer类型
         job.setMapperClass(CommentSumMapper.class);
@@ -47,7 +47,7 @@ public class ComentSumDriver {
         job.setOutputValueClass(CommentCountBean.class);
 
         //配置本次作业的输入数据路径和输出数据路径
-        Path inputPath = new Path("input/eleme_shops_shenzhen_20220913_sample.csv");
+        Path inputPath = new Path("input/eleme_shops_20220913.csv");
         Path outputPath = new Path("output/meituan/sum");
 
         //todo 默认组件 TextInputFormat TextOutputFormat

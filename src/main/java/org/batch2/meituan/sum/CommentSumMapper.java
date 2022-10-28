@@ -44,11 +44,11 @@ public class CommentSumMapper extends Mapper<LongWritable, Text, Text, CommentCo
         String state = fields[2];//获得了 州 state = "Snohomish"
         outKey.set(state);
         //获得确诊数 并转换为数字的long类型
-        long covid_case = Long.parseLong(fields[3]);
+        long cases = Long.parseLong(fields[3]);
         //  //获得死亡数 并转换为数字的long类型
         long comments = Long.parseLong(fields[4]);
         //将确诊数 和 死亡数 放到的我们outValue中 （CommentCountBean）
-        outValue.set(covid_case, comments);
+        outValue.set(cases, comments);
 
         /**
          * 5、输出结果
