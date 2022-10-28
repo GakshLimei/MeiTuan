@@ -1,4 +1,4 @@
-package org.batch2.MeiTuan.driver;
+package org.batch2.meituan.StatePartitioner;
 
 
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
@@ -29,8 +29,8 @@ public class StatePartitionDriver {
         job.setJarByClass(StatePartitionDriver.class);
 
         //设置本次mr程序的mapper类型、reducer类型
-        job.setMapperClass(org.batch2.MeiTuan.mapper.StatePartitionMapper.class);
-        job.setReducerClass(org.batch2.MeiTuan.reduce.StatePartitionReducer.class);
+        job.setMapperClass(org.batch2.meituan.mapper.StatePartitionMapper.class);
+        job.setReducerClass(org.batch2.meituan.reduce.StatePartitionReducer.class);
 
         //指定mapper阶段输出的key value数据类型
         job.setMapOutputKeyClass(Text.class);
@@ -47,7 +47,7 @@ public class StatePartitionDriver {
          * 特殊情况下： reducetask个数 > 分区个数  ====> 程序可以运行，但多有空文件产生，浪费性能
          *            reducetask个数 < 分区个数  ====> 程序直接报错：非法分区
          */
-        job.setPartitionerClass(org.batch2.MeiTuan.Been.StatePartitioner.class);
+        job.setPartitionerClass(org.batch2.meituan.Been.StatePartitioner.class);
         job.setNumReduceTasks(6);// 5 是已经在StatePartitioner已经分好的区 1：其他州的数据  5 + 1 = 6
 
 

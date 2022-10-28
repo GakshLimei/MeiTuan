@@ -1,4 +1,4 @@
-package org.batch2.MeiTuan.mapper;
+package org.batch2.meituan.mapper;
 
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;

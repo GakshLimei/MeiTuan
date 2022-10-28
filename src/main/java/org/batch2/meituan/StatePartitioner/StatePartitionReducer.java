@@ -1,4 +1,4 @@
-package org.batch2.MeiTuan.reduce;
+package org.batch2.meituan.reduce;
 
 /**
  * @author:Yan

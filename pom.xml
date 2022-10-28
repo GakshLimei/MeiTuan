@@ -54,7 +54,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>org.batch2.MeiTuan.driver.Main</mainClass>
+                            <mainClass>org.batch2.meituan.driver.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

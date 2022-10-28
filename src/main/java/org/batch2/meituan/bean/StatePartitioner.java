@@ -1,4 +1,4 @@
-package org.batch2.MeiTuan.Been;
+package org.batch2.meituan.Been;
 
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Partitioner;
