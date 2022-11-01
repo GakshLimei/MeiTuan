@@ -47,7 +47,7 @@ public class CommentSumDriver {
         job.setOutputValueClass(CommentCountBean.class);
 
         //配置本次作业的输入数据路径和输出数据路径
-        Path inputPath = new Path("input/eleme_shops_20220913.csv");
+        Path inputPath = new Path("input/eleme_shops_sum.csv");
         Path outputPath = new Path("output/meituan/sum");
 
         //todo 默认组件 TextInputFormat TextOutputFormat

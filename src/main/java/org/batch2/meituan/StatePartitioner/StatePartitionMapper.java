@@ -1,4 +1,4 @@
-package org.batch2.meituan.mapper;
+package org.batch2.meituan.StatePartitioner;
 
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
@@ -20,7 +20,7 @@ public class StatePartitionMapper extends Mapper<LongWritable, Text,Text,Text> {
         String[] lines = value.toString().split(",");
 
         //2、以州作为key，参与分区，通过自定义分区，同一个州的数据到同一个分区同一个reducetask处理
-        String state = lines[5];
+        String state = lines[2];
 
         //3、赋值
         outKey.set(state);

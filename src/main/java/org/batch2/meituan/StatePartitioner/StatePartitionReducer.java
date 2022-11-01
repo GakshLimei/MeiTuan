@@ -1,4 +1,4 @@
-package org.batch2.meituan.reduce;
+package org.batch2.meituan.StatePartitioner;
 
 /**
  * @author:Yan

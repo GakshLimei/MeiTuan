@@ -1,14 +1,14 @@
 package org.batch2.meituan.StatePartitioner;
 
 
-import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
-import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 /**
  * @author:Yan
@@ -29,8 +29,8 @@ public class StatePartitionDriver {
         job.setJarByClass(StatePartitionDriver.class);
 
         //设置本次mr程序的mapper类型、reducer类型
-        job.setMapperClass(org.batch2.meituan.mapper.StatePartitionMapper.class);
-        job.setReducerClass(org.batch2.meituan.reduce.StatePartitionReducer.class);
+        job.setMapperClass(org.batch2.meituan.StatePartitioner.StatePartitionMapper.class);
+        job.setReducerClass(org.batch2.meituan.StatePartitioner.StatePartitionReducer.class);
 
         //指定mapper阶段输出的key value数据类型
         job.setMapOutputKeyClass(Text.class);
@@ -47,12 +47,12 @@ public class StatePartitionDriver {
          * 特殊情况下： reducetask个数 > 分区个数  ====> 程序可以运行，但多有空文件产生，浪费性能
          *            reducetask个数 < 分区个数  ====> 程序直接报错：非法分区
          */
-        job.setPartitionerClass(org.batch2.meituan.Been.StatePartitioner.class);
+        job.setPartitionerClass(org.batch2.meituan.bean.StatePartitioner.class);
         job.setNumReduceTasks(6);// 5 是已经在StatePartitioner已经分好的区 1：其他州的数据  5 + 1 = 6
 
 
         //配置本次作业的输入数据路径和输出数据路径
-        Path inputPath = new Path("input/eleme_shops_shenzhen_20220913_sample.csv");
+        Path inputPath = new Path("input/eleme_shops_partitioner.csv");
         Path outputPath = new Path("output/covid/meituanpartitoner");
 
         //todo 默认组件 TextInputFormat TextOutputFormat
