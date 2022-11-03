@@ -12,7 +12,7 @@ import org.batch2.meituan.bean.CommentCountBean2;
 
 /**
  * @author:Gary
- * @date: 2022年09月25日 14:50
+ * @date: 2022年11月2日 14:50
  * @desc:
  */
 public class CommentSortSumDriver {
@@ -42,8 +42,8 @@ public class CommentSortSumDriver {
 
 
         //配置本次作业的输入数据路径和输出数据路径
-        Path inputPath = new Path("input/eleme_shops_sum.csv");
-        Path outputPath = new Path("output/meituan/sum");
+        Path inputPath = new Path("output/meituan/sum");
+        Path outputPath = new Path("output/meituan/sort");
 
         //todo 默认组件 TextInputFormat TextOutputFormat
         FileInputFormat.setInputPaths(job, inputPath);

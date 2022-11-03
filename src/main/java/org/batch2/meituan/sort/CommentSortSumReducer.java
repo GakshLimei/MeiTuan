@@ -9,7 +9,7 @@ import java.io.IOException;
 
 /**
  * @author:Gary
- * @date: 2022年09月25日 14:48
+ * @date: 2022年11月25日 14:48
  * @desc:
  */
 public class CommentSortSumReducer extends Reducer<CommentCountBean2, Text, Text, CommentCountBean2> {
