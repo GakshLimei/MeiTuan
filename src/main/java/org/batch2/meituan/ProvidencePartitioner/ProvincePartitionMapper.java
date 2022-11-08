@@ -1,4 +1,4 @@
-package org.batch2.meituan.StatePartitioner;
+package org.batch2.meituan.ProvidencePartitioner;
 
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
@@ -11,7 +11,7 @@ import java.io.IOException;
  * @date: 2022年08月12日 15:07
  * @desc:
  */
-public class StatePartitionMapper extends Mapper<LongWritable, Text,Text,Text> {
+public class ProvincePartitionMapper extends Mapper<LongWritable, Text,Text,Text> {
 
     Text outKey = new Text();
     @Override
