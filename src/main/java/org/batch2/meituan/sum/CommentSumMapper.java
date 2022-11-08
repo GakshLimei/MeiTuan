@@ -10,7 +10,7 @@ import java.io.IOException;
 
 /**
  * @author:Gary
- * @date: 2022年08月11日 14:03
+ * @date: 2022年11月4日 14:03
  * @desc: 需求：统计每个州累计确诊病例。
  * 分析：
  * 自定义一个对象CovidCountBean，用于封装每个县的确诊病例数和死亡病例数。注意需要实现hadoop的序列化机制。

@@ -1,4 +1,4 @@
-package org.batch2.meituan.StatePartitioner;
+package org.batch2.meituan.ProvidencePartitioner;
 
 
 import org.apache.hadoop.conf.Configuration;
@@ -15,7 +15,7 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
  * @date: 2022年08月12日 15:14
  * @desc:
  */
-public class StatePartitionDriver {
+public class ProvincePartitionDriver {
 
     public static void main(String[] args) throws Exception {
 
@@ -23,14 +23,14 @@ public class StatePartitionDriver {
         Configuration conf = new Configuration();
 
         //构造job作业的实例,参数（配置对象，job名字）
-        Job job = Job.getInstance(conf, StatePartitionDriver.class.getSimpleName());
+        Job job = Job.getInstance(conf, ProvincePartitionDriver.class.getSimpleName());
 
         //设置mr程序运行的主类
-        job.setJarByClass(StatePartitionDriver.class);
+        job.setJarByClass(ProvincePartitionDriver.class);
 
         //设置本次mr程序的mapper类型、reducer类型
-        job.setMapperClass(org.batch2.meituan.StatePartitioner.StatePartitionMapper.class);
-        job.setReducerClass(org.batch2.meituan.StatePartitioner.StatePartitionReducer.class);
+        job.setMapperClass(ProvincePartitionMapper.class);
+        job.setReducerClass(ProvincePartitionReducer.class);
 
         //指定mapper阶段输出的key value数据类型
         job.setMapOutputKeyClass(Text.class);
