@@ -47,7 +47,7 @@ public class ReduceJoinMapper extends Mapper<LongWritable, Text, Text, Text> {
             // 100101|155083444927602|四川果冻橙6个约180g  （商品id、商品编号、商品名称）
             outKey.set(fields[0]);//将商品表里的id作为key。因为在reduce根据key来进行数关联操作。
 //            StringBuilder append =sb.append(fields[1]+"\t"+fields[2]);
-            StringBuilder append =sb.append(fields[1]).append("\t").append(fields[2]);
+            StringBuilder append =sb.append(fields[1]).append("\t").append(fields[1]);
             //在起始位置添加一个goods#字符串 目的是在reduce进行识别和拆分
             outValue.set(sb.insert(0,"shops#").toString());
             //向reduce阶段输出的是商品信息的数据
