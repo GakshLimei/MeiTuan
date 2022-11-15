@@ -3,6 +3,7 @@ package org.batch2.meituan.SequenceFilePartitoner;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.SequenceFile;
 import org.apache.hadoop.io.Text;
@@ -25,10 +26,10 @@ public class WriteToSequenceFile {
         // 设置作业的输入为TextInputFormat（普通文本）
         job.setInputFormatClass(TextInputFormat.class);
         // 设置作业的输入路径
-        TextInputFormat.addInputPath(job,new Path("output/meituan/partitoner"));
+        TextInputFormat.addInputPath(job,new Path("output/meituan/seqInput"));
         // 设置Map端的实现类
         job.setMapperClass(WriteSeqFileMapper.class);
-        // 设置Map端输入的Key类型
+        // 设置Map端输入的Key类型···
         job.setMapOutputKeyClass(NullWritable.class);
         // 设置Map端输入的Value类型
         job.setMapOutputValueClass(Text.class);
