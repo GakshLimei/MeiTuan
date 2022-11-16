@@ -44,7 +44,7 @@ public class WriteToSequenceFile {
         // 设置Reduce端输出的Value类型
         job.setOutputValueClass(Text.class);
         // 从参数中获取输出路径
-        Path outputDir = new Path("output/seq_partitoner");
+        Path outputDir = new Path("output/meituan/seq_partitoner");
         // 如果输出路径已存在则删除
         outputDir.getFileSystem(conf
         ).delete(outputDir, true);
