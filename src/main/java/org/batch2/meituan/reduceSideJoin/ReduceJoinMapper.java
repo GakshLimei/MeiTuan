@@ -44,7 +44,7 @@ public class ReduceJoinMapper extends Mapper<LongWritable, Text, Text, Text> {
         String[] fields = value.toString().split(",");
         //判断处理的是哪个文件
         if (filename.contains("eleme_shops.csv")) {//处理的是商品数据
-            // 1|小宇东北烧烤(上寮店)|暂无评分 (店铺id、店铺名、用户评分)
+            // 1,小宇东北烧烤(上寮店),暂无评分 (店铺id、店铺名、用户评分)
 
             outKey.set(fields[0]);//将商品表里的id作为key。因为在reduce根据key来进行数关联操作。
 //            StringBuilder append =sb.append(fields[1]+"\t"+fields[2]);
