@@ -20,23 +20,23 @@ import java.io.IOException;
  */
 public class ReduceJoinSortApp {
 
-    public static class ReduceJoinMapper extends Mapper<LongWritable, Text,Text,Text> {
+    public static class ReduceJoinMapper extends Mapper<LongWritable, Text,LongWritable,Text> {
 
-        Text outKey = new Text();
+        LongWritable outKey = new LongWritable();
         Text outvalue = new Text();
 
         @Override
         protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
             String[] fields = value.toString().split("\t");
-            outKey.set(fields[0]);
+            outKey.set(Long.parseLong(fields[0]));
             outvalue.set(fields[0]+"\t"+fields[1]+"\t"+fields[2]+"\t"+fields[3]+"\t"+fields[4]);
             context.write(outKey,outvalue);
         }
     }
 
-    public static class ReduceJoinReducer extends Reducer<Text,Text,Text, NullWritable> {
+    public static class ReduceJoinReducer extends Reducer<LongWritable,Text,Text, NullWritable> {
         @Override
-        protected void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
+        protected void reduce(LongWritable key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
             for (Text value : values) {
                 context.write(value,NullWritable.get());
             }
@@ -56,7 +56,7 @@ public class ReduceJoinSortApp {
         job.setReducerClass(ReduceJoinReducer.class);
 
         // 设置作业mapper阶段输出key value数据类型
-        job.setMapOutputKeyClass(Text.class);
+        job.setMapOutputKeyClass(LongWritable.class);
         job.setMapOutputValueClass(Text.class);
 
         //设置作业reducer阶段输出key value数据类型 也就是程序最终输出数据类型
