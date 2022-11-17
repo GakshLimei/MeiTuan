@@ -41,21 +41,22 @@ public class ReduceJoinMapper extends Mapper<LongWritable, Text, Text, Text> {
         sb.setLength(0);
 
         //切割处理输入数据
-        String[] fields = value.toString().split("\\|");
+        String[] fields = value.toString().split(",");
         //判断处理的是哪个文件
-        if (filename.contains("eleme_shops.txt")) {//处理的是商品数据
-            // 100101|155083444927602|四川果冻橙6个约180g  （商品id、商品编号、商品名称）
+        if (filename.contains("eleme_shops.csv")) {//处理的是商品数据
+            // 1|小宇东北烧烤(上寮店)|暂无评分 (店铺id、店铺名、用户评分)
+
             outKey.set(fields[0]);//将商品表里的id作为key。因为在reduce根据key来进行数关联操作。
 //            StringBuilder append =sb.append(fields[1]+"\t"+fields[2]);
             StringBuilder append =sb.append(fields[1]).append("\t").append(fields[2]);
-            //在起始位置添加一个goods#字符串 目的是在reduce进行识别和拆分
+            //在起始位置添加一个shops#字符串 目的是在reduce进行识别和拆分
             outValue.set(sb.insert(0,"shops#").toString());
-            //向reduce阶段输出的是商品信息的数据
+            //向reduce阶段输出的是店铺信息的数据
             context.write(outKey,outValue);
-        } else {//处理的是订单数据
+        } else {//处理的是店铺分类数据
             //  2|113561|11192  （订单编号、商品id、实际支付价格）
             outKey.set(fields[1]);
-            StringBuilder append =sb.append(fields[0]).append("\t").append(fields[2]);
+            StringBuilder append =sb.append(fields[0]).append("\t");
             outValue.set(sb.insert(0,"category#").toString());
             context.write(outKey,outValue);
         }

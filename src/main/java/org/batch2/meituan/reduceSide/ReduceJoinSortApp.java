@@ -28,8 +28,8 @@ public class ReduceJoinSortApp {
         @Override
         protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
             String[] fields = value.toString().split("\t");
-            outKey.set(fields[1]);
-            outvalue.set(fields[1]+"\t"+fields[0]+"\t"+fields[3]+"\t"+fields[4]+"\t"+fields[2]);
+            outKey.set(fields[0]);
+            outvalue.set(fields[0]+"\t"+fields[1]+"\t"+fields[2]+"\t"+fields[3]+"\t"+fields[4]);
             context.write(outKey,outvalue);
         }
     }
@@ -64,9 +64,9 @@ public class ReduceJoinSortApp {
         job.setOutputValueClass(NullWritable.class);
 
         // 配置作业的输入数据路径
-        FileInputFormat.addInputPath(job, new Path("goods_output"));
+        FileInputFormat.addInputPath(job, new Path("output/meituan/join"));
         // 配置作业的输出数据路径
-        FileOutputFormat.setOutputPath(job, new Path("goods_result"));
+        FileOutputFormat.setOutputPath(job, new Path("output/meituan/join/sort"));
 
         // 提交作业并等待执行完成
         boolean b = job.waitForCompletion(true);
