@@ -1,9 +1,8 @@
-package org.batch2.meituan.SequenceFilePartitoner;
+package org.batch2.meituan.SequenceFilePartitoner.write;
 
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.SequenceFile;
 import org.apache.hadoop.io.Text;
