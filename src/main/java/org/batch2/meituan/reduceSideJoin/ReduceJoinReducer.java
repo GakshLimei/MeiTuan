@@ -1,4 +1,4 @@
-package org.batch2.meituan.reduceSide;
+package org.batch2.meituan.reduceSideJoin;
 
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
