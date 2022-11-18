@@ -107,7 +107,6 @@ public class HDFSClientTest {
 
     }
 
-
     //3.关闭连接
     @After //在@Test之前去执行。
     public void close() throws IOException {

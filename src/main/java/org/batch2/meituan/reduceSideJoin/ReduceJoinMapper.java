@@ -10,8 +10,8 @@ import java.io.IOException;
 /**
  * @author:Gary
  * @date: 2022年11月10日 17:43
- * @desc: 使用 mapper 处理订单数据和商品数据，输出的时候以 goodsId 商品编号作为 key。相
- * 同 goodsId 的商品和订单会到同一个 reduce 的同一个分组，在分组中进行订单和商品信息的关联合并。
+ * @desc: 使用 mapper 处理订单数据和商品数据，输出的时候以 shopsId 商品编号作为 key。相
+ * 同 shopsId 的商品和订单会到同一个 reduce 的同一个分组，在分组中进行订单和商品信息的关联合并。
  * 在 MapReduce 程序中可以通过 context 获取到当前处理的切片所属的文件名称。
  * 根据文件名来判断当前处理的是订单数据还是商品数据，以此来进行不同逻辑的输出。
  * join 处理完之后，最后可以再通过 MapReduce 程序排序功能，将属于同一笔订单的所有商品信息汇聚在一起。
@@ -22,9 +22,9 @@ import java.io.IOException;
 public class ReduceJoinMapper extends Mapper<LongWritable, Text, Text, Text> {
 
     Text outKey = new Text();//声明了输出的key
-    Text outValue = new Text();//生命了输出的value
+    Text outValue = new Text();//声明了输出的value
     StringBuilder sb = new StringBuilder();//是一个字符串的升级版，里面包含了一些方法，比如切割、切分、拼接等等一些操作
-    String filename = null;//生命一个用来装文件名得字符串
+    String filename = null;//声明一个用来装文件名得字符串
 
     @Override
     protected void setup(Context context) throws IOException, InterruptedException {

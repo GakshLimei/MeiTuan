@@ -13,9 +13,9 @@ import java.util.List;
  * @desc:
  */
 public class ReduceJoinReducer extends Reducer<Text,Text,Text,Text> {
-    //用来存放  商品编号、商品名称
+    //用来存放  店铺编号、店铺名称
     List<String> goodsList = new ArrayList<>();
-    //用来存放  订单编号、实际支付价格
+    //用来存放  分类编号、实际支付价格
     List<String> orderList = new ArrayList<>();
 
     Text outValue = new Text();
@@ -26,8 +26,8 @@ public class ReduceJoinReducer extends Reducer<Text,Text,Text,Text> {
         for (Text value : values) {
             //将结果添加到对应的list中
             if(value.toString().startsWith("shops#")){
-//              String[] split =   value.toString().split("#")[1];//["goods","商品编号 商品名称"]
-              String[] split =   value.toString().split("#");//["goods","商品编号 商品名称"]
+//              String[] split =   value.toString().split("#")[1];//["goods","店铺编号 店铺名称"]
+              String[] split =   value.toString().split("#");//["goods","店铺编号 店铺名称"]
                 String goodsInfo = split[1];
                 goodsList.add(goodsInfo);
             }
@@ -44,7 +44,7 @@ public class ReduceJoinReducer extends Reducer<Text,Text,Text,Text> {
         for (int i = 0; i < orderSize; i++) {
             for (int j = 0; j < goodsSize; j++) {
                 outValue.set(orderList.get(i)+"\t"+goodsList.get(j));
-                //最终输出：商品id、订单编号、实际支付价格、商品编号、商品名称
+                //最终输出：店铺id、分类编号、实际支付价格、店铺编号、店铺名称
                 context.write(key,outValue);
             }
         }
