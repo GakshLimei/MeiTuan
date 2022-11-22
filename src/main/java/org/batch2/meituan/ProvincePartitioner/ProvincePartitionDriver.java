@@ -1,4 +1,4 @@
-package org.batch2.meituan.ProvidencePartitioner;
+package org.batch2.meituan.ProvincePartitioner;
 
 
 import org.apache.hadoop.conf.Configuration;
