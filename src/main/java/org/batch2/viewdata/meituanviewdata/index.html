@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>美团大数据可视化大屏</title>
+    <link rel="stylesheet" href="css/index.css">
+    <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+</head>
+<body>
+
+<div class="content-body">
+    <div class="header">
+        <div class="header-left">
+            <span>美团大数据可视化大屏</span>
+        </div>
+<!--        <div class="header-time">-->
+<!--            <span id="time"></span>-->
+<!--        </div>-->
+    </div>
+
+    <div class="content">
+        <div class="content-con">
+            <div class="left-body">
+                <div class="left-top public-bg">
+                    <div class="public-title">订单量与评论量Top1</div>
+                    <div class="top-body">
+                        <div class="top-left">
+                            <div class="top-left-title">
+                                <h6>最高订单量</h6>
+                                <span><b>76445046</b></span>
+                                <img src="image/pictre.png" alt="">
+                            </div>
+
+                        </div>
+                        <div class="top-right">
+                            <div class="top-left-title">
+                                <h6>最高评论量</h6>
+                                <span><b>1556913</b></span>
+                                <img src="image/pictre.png" alt="">
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="left-con public-bg">
+                    <div class="public-title">各省市评论总量</div>
+                    <div class="title-nav" id="wuran2"></div>
+                </div>
+                <div class="left-bottom public-bg">
+                    <div class="public-title">各省市订单总量排序</div>
+                    <div class="title-nav" id="wuran"></div>
+                </div>
+            </div>
+
+            <div class="center-body">
+                <div class="map" id="map"></div>
+            </div>
+
+            <div class="right-body">
+                <div class="right-top public-bg">
+                    <div class="public-title">各省市月销量最高的外卖店TopN</div>
+                    <div class="title-nav">
+                        <div class="top5-ul">
+                            <ul>
+
+                                <li>
+                                    <span>1</span>
+                                    <span>上海</span>
+                                    <span>上海市</span>
+                                    <span>小桃园(复兴中路店)</span>
+                                    <span>999999</span>
+                                </li>
+                                <li>
+                                    <span>2</span>
+                                    <span>广东</span>
+                                    <span>广州市</span>
+                                    <span>舌尖疯狂在成都(天河店)</span>
+                                    <span>800099</span>
+                                </li>
+                                <li>
+                                    <span>3</span>
+                                    <span>北京</span>
+                                    <span>北京市</span>
+                                    <span>汉堡王(北京环球贸易中心)</span>
+                                    <span>700099</span>
+                                </li>
+                                <li>
+                                    <span>4</span>
+                                    <span>湖南</span>
+                                    <span>长沙市</span>
+                                    <span>公交新村粉店(太平街店)</span>
+                                    <span>700099</span>
+                                </li>
+                                <li>
+                                    <span>5</span>
+                                    <span>江苏</span>
+                                    <span>南京市</span>
+                                    <span>氢简厨房(新街口店)</span>
+                                    <span>600099</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="right-con public-bg">
+                    <div class="public-title">各类别Top1</div>
+                    <div class="title-nav" id="huaxing"></div>
+                </div>
+                <div class="right-bottom public-bg">
+                    <div class="public-title">各省市最小售价及配送费总和</div>
+                    <div class="title-nav" id="zhexian"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+<script src="https://www.jq22.com/jquery/echarts-4.2.1.min.js"></script>
+<script type="text/javascript" src="js/china.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+
+<script>
+    //顶部时间
+    function getTime(){
+        var myDate = new Date();
+        var myYear = myDate.getFullYear(); //获取完整的年份(4位,1970-????)
+        var myMonth = myDate.getMonth()+1; //获取当前月份(0-11,0代表1月)
+        var myToday = myDate.getDate(); //获取当前日(1-31)
+        var myDay = myDate.getDay(); //获取当前星期X(0-6,0代表星期天)
+        var myHour = myDate.getHours(); //获取当前小时数(0-23)
+        var myMinute = myDate.getMinutes(); //获取当前分钟数(0-59)
+        var mySecond = myDate.getSeconds(); //获取当前秒数(0-59)
+        var week = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+        var nowTime;
+
+        nowTime = myYear+'年'+fillZero(myMonth)+'月'+fillZero(myToday)+'日'+'&nbsp;&nbsp;'+fillZero(myHour)+':'+fillZero(myMinute)+':'+fillZero(mySecond)+'&nbsp;&nbsp;'+week[myDay]+'&nbsp;&nbsp;';
+        //console.log(nowTime);
+        $('#time').html(nowTime);
+    };
+    function fillZero(str){
+        var realNum;
+        if(str<10){
+            realNum	= '0'+str;
+        }else{
+            realNum	= str;
+        }
+        return realNum;
+    }
+    setInterval(getTime,1000);
+</script>
