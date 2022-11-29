@@ -2,6 +2,7 @@ package org.batch2.meituan.reduceSideJoin;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
@@ -9,6 +10,7 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.jobcontrol.ControlledJob;
 import org.apache.hadoop.mapreduce.lib.jobcontrol.JobControl;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.yarn.exceptions.YarnException;
 
 import java.io.IOException;
 
@@ -43,9 +45,9 @@ public class MrJobFlow {
         job1.setOutputValueClass(Text.class);
 
         // 配置作业的输入数据路径
-        FileInputFormat.addInputPath(job1, new Path("input/goods"));
+        FileInputFormat.addInputPath(job1, new Path("input/join"));
         // 配置作业的输出数据路径
-        FileOutputFormat.setOutputPath(job1, new Path("goods_output"));
+        FileOutputFormat.setOutputPath(job1, new Path("output/meituan/join"));
 
         //将普通作业包装成受控作业
         ControlledJob ctrljob1 = new ControlledJob(conf);
@@ -62,7 +64,7 @@ public class MrJobFlow {
         job2.setReducerClass(ReduceJoinSortApp.ReduceJoinReducer.class);
 
         // 设置作业mapper阶段输出key value数据类型
-        job2.setMapOutputKeyClass(Text.class);
+        job2.setMapOutputKeyClass(LongWritable.class);
         job2.setMapOutputValueClass(Text.class);
 
         //设置作业reducer阶段输出key value数据类型 也就是程序最终输出数据类型
@@ -70,9 +72,9 @@ public class MrJobFlow {
         job2.setOutputValueClass(NullWritable.class);
 
         // 配置作业的输入数据路径
-        FileInputFormat.addInputPath(job2, new Path("goods_output"));
+        FileInputFormat.addInputPath(job2, new Path("output/meituan/join"));
         // 配置作业的输出数据路径
-        FileOutputFormat.setOutputPath(job2, new Path("goods_result"));
+        FileOutputFormat.setOutputPath(job2, new Path("output/meituan/join/sort"));
 
         //将普通作业包装成受控作业
         ControlledJob ctrljob2 = new ControlledJob(conf);
