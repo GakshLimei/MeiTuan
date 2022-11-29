@@ -53,7 +53,7 @@ public class ProvincePartitionDriver {
 
         //配置本次作业的输入数据路径和输出数据路径
         Path inputPath = new Path("input/eleme_shops_partitioner.csv");
-        Path outputPath = new Path("output/covid/meituanpartitoner");
+        Path outputPath = new Path("output/meituan/partitoner");
 
         //todo 默认组件 TextInputFormat TextOutputFormat
         FileInputFormat.setInputPaths(job, inputPath);
