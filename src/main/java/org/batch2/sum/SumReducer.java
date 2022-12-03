@@ -1,0 +1,47 @@
+package org.batch2.sum;
+
+
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.batch2.meituan.bean.SumBean;
+
+import java.io.IOException;
+
+/**
+ * @author:Gary
+ * @date: 2022年11月4日 14:07
+ * @desc:
+ */
+public class SumReducer extends Reducer<Text, SumBean, Text, SumBean> {
+    SumBean outValue = new SumBean();
+
+    @Override
+    protected void reduce(Text key, Iterable<SumBean> values, Context context) throws IOException, InterruptedException {
+        /**
+         * 创建统计变量
+         */
+        long totalMonthSales = 0;//累计月销量
+        long totalRatingAmounts = 0;//累计评论数
+        double totalMinPrice = 0;//累计最小价格
+        double totalDeliveryFee = 0;//累计配送费
+
+        /**
+         * 遍历该州的各个县的数据
+         */
+        for (SumBean value : values) {
+
+            totalMonthSales += value.getMonthSales();
+            totalRatingAmounts += value.getRatingAmounts();
+            totalMinPrice += value.getMinPrice();
+            totalDeliveryFee += value.getDeliveryFee();
+        }
+
+        /**
+         * 输出结果赋值
+         */
+        outValue.set(totalMonthSales, totalRatingAmounts, totalMinPrice, totalDeliveryFee);
+        context.write(key, outValue);
+
+
+    }
+}
