@@ -25,7 +25,7 @@ public class WriteToSequenceFile {
         // 设置作业的输入为TextInputFormat（普通文本）
         job.setInputFormatClass(TextInputFormat.class);
         // 设置作业的输入路径
-        TextInputFormat.addInputPath(job,new Path("output/meituan/seqInput"));
+        TextInputFormat.addInputPath(job,new Path("input/seq_file_input"));
         // 设置Map端的实现类
         job.setMapperClass(WriteSeqFileMapper.class);
         // 设置Map端输入的Key类型···
