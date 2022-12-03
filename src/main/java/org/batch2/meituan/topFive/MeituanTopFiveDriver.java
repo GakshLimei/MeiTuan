@@ -1,7 +1,7 @@
 package org.batch2.meituan.topFive;
 
 import org.batch2.meituan.bean.MeituanBean;
-import org.batch2.meituan.topN.MeituanGroupingComparator;
+import org.batch2.meituan.topOne.MeituanGroupingComparator;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;

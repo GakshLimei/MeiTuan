@@ -1,4 +1,4 @@
-package org.batch2.meituan.topN;
+package org.batch2.meituan.topOne;
 
 import org.batch2.meituan.bean.MeituanBean;
 import org.apache.hadoop.io.LongWritable;
@@ -13,7 +13,7 @@ import java.io.IOException;
  **/
 
 
-public class MeituanTopNMapper extends Mapper<LongWritable, Text, MeituanBean, LongWritable> {
+public class MeituanTopOneMapper extends Mapper<LongWritable, Text, MeituanBean, LongWritable> {
 
     MeituanBean outKey = new MeituanBean();
 

@@ -1,4 +1,4 @@
-package org.batch2.meituan.topN;
+package org.batch2.meituan.topOne;
 
 import org.batch2.meituan.bean.MeituanBean;
 import org.apache.hadoop.io.WritableComparable;

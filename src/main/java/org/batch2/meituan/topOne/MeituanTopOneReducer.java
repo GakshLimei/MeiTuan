@@ -1,4 +1,4 @@
-package org.batch2.meituan.topN;
+package org.batch2.meituan.topOne;
 
 import org.batch2.meituan.bean.MeituanBean;
 import org.apache.hadoop.io.LongWritable;
@@ -7,7 +7,7 @@ import org.apache.hadoop.mapreduce.Reducer;
 import java.io.IOException;
 
 
-public class MeituanTopNReducer extends Reducer<MeituanBean, LongWritable, MeituanBean, LongWritable> {
+public class MeituanTopOneReducer extends Reducer<MeituanBean, LongWritable, MeituanBean, LongWritable> {
 
 
     @Override
