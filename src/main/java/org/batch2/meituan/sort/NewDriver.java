@@ -40,7 +40,7 @@ public class NewDriver {
         job.setOutputValueClass(NewMapper.class);
 
         //配置本次作业的输入数据路径和输出数据路径
-        Path inputPath = new Path("input/sum/eleme_shops_shenzhen_20220913_sample.csv");
+        Path inputPath = new Path("input/new.csv");
         Path outputPath = new Path("output/meituan/sum");
 
         //todo 默认组件 TextInputFormat TextOutputFormat
