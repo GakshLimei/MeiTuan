@@ -1,4 +1,4 @@
-package org.batch2.meituan.sort;
+package org.batch2.meituan.sortold;
 
 
 import org.apache.hadoop.io.Text;
