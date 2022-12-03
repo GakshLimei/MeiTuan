@@ -1,4 +1,4 @@
-package org.batch2.meituan.sum;
+package org.batch2.meituan.commentsum;
 
 /**
  * @author:Gary
