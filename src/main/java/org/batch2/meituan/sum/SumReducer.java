@@ -1,4 +1,4 @@
-package org.batch2.sum;
+package org.batch2.meituan.sum;
 
 
 import org.apache.hadoop.io.Text;

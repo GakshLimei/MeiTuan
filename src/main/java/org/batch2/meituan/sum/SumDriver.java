@@ -1,4 +1,4 @@
-package org.batch2.meituan.commentsum;
+package org.batch2.meituan.sum;
 
 /**
  * @author:Gary
@@ -7,7 +7,6 @@ package org.batch2.meituan.commentsum;
  */
 
 
-import org.batch2.meituan.bean.CommentCountBean;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
@@ -15,13 +14,14 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.batch2.meituan.bean.SumBean;
 
 /**
  * 该类就是MapReduce程序客户端驱动类
  * 主要是构造Job对象实例
  * 指定各种组件属性：mapper、reducer类，输入输出的数据类型，输入输出的数据路径，提交job作业（job.submit()）
  */
-public class CommentSumDriver {
+public class SumDriver {
 
     public static void main(String[] args) throws Exception {
 
@@ -29,25 +29,25 @@ public class CommentSumDriver {
         Configuration conf = new Configuration();
 
         //构造job作业的实例,参数（配置对象，job名字）
-        Job job = Job.getInstance(conf, CommentSumDriver.class.getSimpleName());
+        Job job = Job.getInstance(conf, SumDriver.class.getSimpleName());
 
         //设置mr程序运行的主类
-        job.setJarByClass(CommentSumDriver.class);
+        job.setJarByClass(SumDriver.class);
 
         //设置本次mr程序的mapper类型、reducer类型
-        job.setMapperClass(CommentSumMapper.class);
-        job.setReducerClass(CommentSumReducer.class);
+        job.setMapperClass(SumMapper.class);
+        job.setReducerClass(SumReducer.class);
 
         //指定mapper阶段输出的key value数据类型
         job.setMapOutputKeyClass(Text.class);
-        job.setMapOutputValueClass(CommentCountBean.class);
+        job.setMapOutputValueClass(SumBean.class);
 
         //指定reducer阶段输出的key value数据类型，也是mr程序最终的输出数据类型
         job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(CommentCountBean.class);
+        job.setOutputValueClass(SumBean.class);
 
         //配置本次作业的输入数据路径和输出数据路径
-        Path inputPath = new Path("input/sum/eleme_shops_sum.csv");
+        Path inputPath = new Path("input/new.csv");
         Path outputPath = new Path("output/meituan/sum");
 
         //todo 默认组件 TextInputFormat TextOutputFormat
