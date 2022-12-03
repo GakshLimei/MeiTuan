@@ -27,7 +27,7 @@ public class HDFSClientTest {
         //2.创建连接的配置对象
         Configuration conf = new Configuration();
         //3、执行操作文件系统的地址
-        conf.set("fs.defaultFS", "hdfs://192.168.88.130:8020");
+        conf.set("fs.defaultFS", "hdfs://192.168.1.128:8020");
         //4.创建文件系统
         fs = FileSystem.get(conf);
 
@@ -39,7 +39,7 @@ public class HDFSClientTest {
     @Test
     public void mkdir() throws IOException {
         //创建文件夹的路径
-        Path path = new Path("/meituan");
+        Path path = new Path("/user/root/input");
         fs.mkdirs(path);
     }
 
@@ -49,7 +49,7 @@ public class HDFSClientTest {
         //创建本地文件路径
         Path src = new Path("input");
         //创建上传路径
-        Path dst = new Path("/meituan/");
+        Path dst = new Path("/user/root/input");
         //上传
         fs.copyFromLocalFile(src, dst);
     }
@@ -80,7 +80,7 @@ public class HDFSClientTest {
     @Test
     public void readFile() throws IOException {
         //创建文件的路径
-        Path path = new Path("/meituan/output/meituan/sort/part-r-00000");
+        Path path = new Path("/user/root/output/meituan/join/part-r-00000");
         //利用IO流进行读取文件
         FSDataInputStream open = fs.open(path);
         //用于缓冲读取的字节数组
