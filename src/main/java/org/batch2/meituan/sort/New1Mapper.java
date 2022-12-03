@@ -38,8 +38,8 @@ public class New1Mapper extends Mapper<LongWritable, Text, CovidCountBean4, Text
          */
         String[] fields = value.toString().split("\t");
         String state = fields[0];
-        double Score = Double.parseDouble(fields[1]);
-        double Comment_number =Double.parseDouble(fields[2]);
+        double Score = Double.parseDouble(fields[3]);
+        double Comment_number =Double.parseDouble(fields[4]);
         outKey.set(Score,Comment_number);
         outValue.set(state);
 

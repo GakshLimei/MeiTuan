@@ -39,7 +39,7 @@ public class SumReducer extends Reducer<Text, SumBean, Text, SumBean> {
         /**
          * 输出结果赋值
          */
-        outValue.set(totalMonthSales, totalRatingAmounts, totalMinPrice, totalDeliveryFee);
+        outValue.set(totalMonthSales, totalRatingAmounts, Math.round(totalMinPrice), Math.round(totalDeliveryFee));
         context.write(key, outValue);
 
 
