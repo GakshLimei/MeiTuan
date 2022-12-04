@@ -41,7 +41,7 @@ public class SumMapper extends Mapper<LongWritable, Text, Text, SumBean> {
         /**
          * 4、提取数据 州、确诊数、死亡数
          */
-        String city = fields[6];//获得了 州 state = "Snohomish"
+        String city = fields[5];//获得了 州 state = "Snohomish"
         outKey.set(city);
         //获得确诊数 并转换为数字的long类型
         long monthSales = Long.parseLong(fields[11]);
