@@ -1,110 +1,226 @@
 $(function(){
 
 	echarts_1();
-	echarts_3();
+	// echarts_3();
 	map();
     //leidatu();
 	wuran2()
     wuran();
     huaxing();
-	// zhexian();
+	zhexian();
 
-	function echarts_1() {
-        // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts_1'));
+/**
+ * 右边下角图表：订单品类占比（备选）
+ */
+ function echarts_1() {
 
-        var data = [
-            {value: 12,name: '行业一'},
-            {value: 13,name: '行业二'},
-            {value: 70,name: '行业三'},
-            {value: 52,name: '行业四'},
-            {value: 35,name: '行业五'}
-        ];
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('echarts_1'));
 
-        option = {
+    var colorList = [{
+            type: 'linear',
+            x: 0,
+            y: 0,
+            x2: 1,
+            y2: 1,
+            colorStops: [{
+                    offset: 0,
+                    color: 'rgba(51,192,205,0.01)' // 0% 处的颜色
+                },
+                {
+                    offset: 1,
+                    color: 'rgba(51,192,205,0.57)' // 100% 处的颜色
+                }
+            ],
+            globalCoord: false // 缺省为 false
+        },
+        {
+            type: 'linear',
+            x: 1,
+            y: 0,
+            x2: 0,
+            y2: 1,
+            colorStops: [{
+                    offset: 0,
+                    color: 'rgba(115,172,255,0.02)' // 0% 处的颜色
+                },
+                {
+                    offset: 1,
+                    color: 'rgba(115,172,255,0.67)' // 100% 处的颜色
+                }
+            ],
+            globalCoord: false // 缺省为 false
+        },
+        {
+            type: 'linear',
+            x: 1,
+            y: 0,
+            x2: 0,
+            y2: 0,
+            colorStops: [{
+                    offset: 0,
+                    color: 'rgba(158,135,255,0.02)' // 0% 处的颜色
+                },
+                {
+                    offset: 1,
+                    color: 'rgba(158,135,255,0.57)' // 100% 处的颜色
+                }
+            ],
+            globalCoord: false // 缺省为 false
+        },
+        {
+            type: 'linear',
+            x: 0,
+            y: 1,
+            x2: 0,
+            y2: 0,
+            colorStops: [{
+                    offset: 0,
+                    color: 'rgba(252,75,75,0.01)' // 0% 处的颜色
+                },
+                {
+                    offset: 1,
+                    color: 'rgba(252,75,75,0.57)' // 100% 处的颜色
+                }
+            ],
+            globalCoord: false // 缺省为 false
+        },
+        {
+            type: 'linear',
+            x: 1,
+            y: 1,
+            x2: 1,
+            y2: 0,
+            colorStops: [{
+                    offset: 0,
+                    color: 'rgba(253,138,106,0.01)' // 0% 处的颜色
+                },
+                {
+                    offset: 1,
+                    color: '#FDB36ac2' // 100% 处的颜色
+                }
+            ],
+            globalCoord: false // 缺省为 false
+        },
+        {
+            type: 'linear',
+            x: 0,
+            y: 0,
+            x2: 1,
+            y2: 0,
+            colorStops: [{
+                    offset: 0,
+                    color: 'rgba(254,206,67,0.12)' // 0% 处的颜色
+                },
+                {
+                    offset: 1,
+                    color: '#FECE4391' // 100% 处的颜色
+                }
+            ],
+            globalCoord: false // 缺省为 false
+        }
+    ]
+    var colorLine = ['#33C0CD', '#73ACFF', '#9E87FF', '#FE6969', '#FDB36A', '#FECE43']
+
+    function getRich() {
+        let result = {}
+        colorLine.forEach((v, i) => {
+            result[`hr${i}`] = {
+                backgroundColor: colorLine[i],
+                borderRadius: 3,
+                width: 3,
+                height: 3,
+                padding: [3, 3, 0, -12]
+            }
+            result[`a${i}`] = {
+                padding: [8, -60, -20, -20],
+                color: colorLine[i],
+                fontSize: 12
+            }
+        })
+        return result
+    }
+    let data = [{
+        'name': '南方',
+        'value': 35
+    }, {
+        'name': '江浙沪',
+        'value': 33
+    }, {
+        'name': '北方',
+        'value': 22
+    }, {
+        'name': '西南',
+        'value': 10
+    }].sort((a, b) => {
+        return b.value - a.value
+    })
+    data.forEach((v, i) => {
+        v.labelLine = {
+            lineStyle: {
+                width: 1,
+                color: colorLine[i]
+            }
+        }
+    })
+    option = {
+        // 图例
+        legend: {
+            orient: 'horizontal', // 布局方式，默认为水平布局，可选为：
+            // 'horizontal' ¦ 'vertical'
+            x: 'center', // 水平安放位置，默认为全图居中，可选为：
+            // 'center' ¦ 'left' ¦ 'right'
+            // ¦ {number}（x坐标，单位px）
+            y: 'bottom', // 垂直安放位置，默认为全图顶端，可选为：
+            // 'top' ¦ 'bottom' ¦ 'center'
+            // ¦ {number}（y坐标，单位px）
             backgroundColor: 'rgba(0,0,0,0)',
-            tooltip: {
-                trigger: 'item',
-                formatter: "{b}: <br/>{c} ({d}%)"
+            borderColor: '#ccc', // 图例边框颜色
+            borderWidth: 0, // 图例边框线宽，单位px，默认为0（无边框）
+            padding: 5, // 图例内边距，单位px，默认各方向内边距为5，
+            // 接受数组分别设定上右下左边距，同css
+            itemGap: 10, // 各个item之间的间隔，单位px，默认为10，
+            // 横向布局时为水平间隔，纵向布局时为纵向间隔
+            itemWidth: 20, // 图例图形宽度
+            itemHeight: 14, // 图例图形高度
+            textStyle: {
+                color: '#fff', // 图例文字颜色
+                fontSize: 18, // 图例文字大小
+            }
+        },
+        series: [{
+            type: 'pie',
+            radius: '60%',
+            center: ['50%', '50%'],
+            clockwise: true,
+            avoidLabelOverlap: true,
+            label: {
+                show: true,
+                position: 'outside',
+                formatter: function(params) {
+                    const name = params.name
+                    const percent = params.percent + '%'
+                    const index = params.dataIndex
+                    return [`{a${index}|${name}：${percent}}`, `{hr${index}|}`].join('\n')
+                },
+                rich: getRich()
             },
-            color: ['#af89d6', '#4ac7f5', '#0089ff', '#f36f8a', '#f5c847'],
-            legend: { //图例组件，颜色和名字
-                x: '70%',
-                y: 'center',
-                orient: 'vertical',
-                itemGap: 12, //图例每项之间的间隔
-                itemWidth: 10,
-                itemHeight: 10,
-                icon: 'rect',
-                data: ['行业一', '行业二', '行业三', '行业四', '行业五'],
-                textStyle: {
-                    color: [],
-                    fontStyle: 'normal',
-                    fontFamily: '微软雅黑',
-                    fontSize: 12,
+            itemStyle: {
+                normal: {
+                    color: function(params) {
+                        return colorList[params.dataIndex]
+                    }
                 }
             },
-            series: [{
-                name: '行业占比',
-                type: 'pie',
-                clockwise: false, //饼图的扇区是否是顺时针排布
-                minAngle: 20, //最小的扇区角度（0 ~ 360）
-                center: ['35%', '50%'], //饼图的中心（圆心）坐标
-                radius: [50, 75], //饼图的半径
-                avoidLabelOverlap: true, ////是否启用防止标签重叠
-                itemStyle: { //图形样式
-                    normal: {
-                        borderColor: '#1e2239',
-                        borderWidth: 2,
-                    },
-                },
-                label: { //标签的位置
-                    normal: {
-                        show: true,
-                        position: 'inside', //标签的位置
-                        formatter: "{d}%",
-                        textStyle: {
-                            color: '#fff',
-                        }
-                    },
-                    emphasis: {
-                        show: true,
-                        textStyle: {
-                            fontWeight: 'bold'
-                        }
-                    }
-                },
-                data: data
-            }, {
-                name: '',
-                type: 'pie',
-                clockwise: false,
-                silent: true,
-                minAngle: 20, //最小的扇区角度（0 ~ 360）
-                center: ['35%', '50%'], //饼图的中心（圆心）坐标
-                radius: [0, 40], //饼图的半径
-                itemStyle: { //图形样式
-                    normal: {
-                        borderColor: '#1e2239',
-                        borderWidth: 1.5,
-                        opacity: 0.21,
-                    }
-                },
-                label: { //标签的位置
-                    normal: {
-                        show: false,
-                    }
-                },
-                data: data
-            }]
-        };
-
-        // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
-        window.addEventListener("resize",function(){
-            myChart.resize();
-        });
+            data,
+            roseType: 'radius'
+        }]
     }
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+
+}
 
 	function echarts_3() {
         // 基于准备好的dom，初始化echarts实例
@@ -1221,14 +1337,14 @@ function zhexian() {
 		// }
 	]
 	dataObj = {
-		year: ['上海', '北京', '四川', '天津', '广东', '江苏','河北','浙江','湖北','湖南','辽宁'],
+		year: ['上海', '北京', '四川', '天津', '广东', '江苏','河北','浙江','湖北','湖南','辽宁','重庆','陕西'],
 		data: {
 			value: [{
 				name: '最小售价总和',
-				value: [31252, 40026, 30623, 39122, 45761, 32052,40,30236,30577,28201,41790]
+				value: [31252, 40026, 30623, 39122, 45761, 32052,40,30236,30577,28201,41790,11930,12090]
 			}, {
 				name: '配送费总和',
-				value: [121473, 116419,104052, 117206, 227214, 118780,117,120053,114196,112995,123429]
+				value: [121473, 116419,104052, 117206, 227214, 118780,117,120053,114196,112995,123429,3247,2624]
 			}
 				// , {	name: '平均流速',
 				// value: [127, 74, 120, 99, 130, 50]}
