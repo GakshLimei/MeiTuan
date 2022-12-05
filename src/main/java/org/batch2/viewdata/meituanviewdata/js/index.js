@@ -1,14 +1,14 @@
 $(function(){
 
 	echarts_1();
-	// echarts_3();
 	map();
+	// echarts_3();
     //leidatu();
 	wuran2()
     wuran();
     huaxing();
 	zhexian();
-
+	
 /**
  * 右边下角图表：订单品类占比（备选）
  */
@@ -222,146 +222,16 @@ $(function(){
 
 }
 
-	function echarts_3() {
-        // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts_3'));
-
-        option = {
-
-            tooltip : {
-                trigger: 'axis'
-            },
-            legend: {
-                orient: 'vertical',
-                data:['简易程序案件数']
-            },
-            grid: {
-                left: '3%',
-                right: '3%',
-                top:'8%',
-                bottom: '5%',
-                containLabel: true
-            },
-            color:['#a4d8cc','#25f3e6'],
-            toolbox: {
-                show : false,
-                feature : {
-                    mark : {show: true},
-                    dataView : {show: true, readOnly: false},
-                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
-                    restore : {show: true},
-                    saveAsImage : {show: true}
-                }
-            },
-
-            calculable : true,
-            xAxis : [
-                {
-                    type : 'category',
-
-                    axisTick:{show:false},
-
-                    boundaryGap : false,
-                    axisLabel: {
-                        textStyle:{
-                            color: '#ccc',
-                            fontSize:'12'
-                        },
-                        lineStyle:{
-                            color:'#2c3459',
-                        },
-                        interval: {default: 0},
-                        rotate:50,
-                        formatter : function(params){
-                            var newParamsName = "";// 最终拼接成的字符串
-                            var paramsNameNumber = params.length;// 实际标签的个数
-                            var provideNumber = 4;// 每行能显示的字的个数
-                            var rowNumber = Math.ceil(paramsNameNumber / provideNumber);// 换行的话，需要显示几行，向上取整
-                            /**
-                             * 判断标签的个数是否大于规定的个数， 如果大于，则进行换行处理 如果不大于，即等于或小于，就返回原标签
-                             */
-                            // 条件等同于rowNumber>1
-                            if (paramsNameNumber > provideNumber) {
-                                /** 循环每一行,p表示行 */
-                                var tempStr = "";
-                                tempStr=params.substring(0,4);
-                                newParamsName = tempStr+"...";// 最终拼成的字符串
-                            } else {
-                                // 将旧标签的值赋给新标签
-                                newParamsName = params;
-                            }
-                            //将最终的字符串返回
-                            return newParamsName
-                        }
-
-                    },
-                    data: ['0时','1时','2时','3时','4时','5时','6时','7时','8时','9时','10时','11时','12时','13时','14时','15时','16时','17时'
-                        ,'18时','19时','20时','21时','22时','23时']
-                }
-            ],
-            yAxis : {
-
-                type : 'value',
-                axisLabel: {
-                    textStyle: {
-                        color: '#ccc',
-                        fontSize:'12',
-                    }
-                },
-                axisLine: {
-                    lineStyle:{
-                        color:'rgba(160,160,160,0.3)',
-                    }
-                },
-                splitLine: {
-                    lineStyle:{
-                        color:'rgba(160,160,160,0.3)',
-                    }
-                },
-
-            }
-            ,
-            series : [
-                {
-                    // name:'简易程序案件数',
-                    type:'line',
-                    areaStyle: {
-
-                        normal: {type: 'default',
-                            color: new echarts.graphic.LinearGradient(0, 0, 0, 0.8, [{
-                                offset: 0,
-                                color: '#25f3e6'
-                            }, {
-                                offset: 1,
-                                color: '#0089ff'
-                            }], false)
-                        }
-                    },
-                    smooth:true,
-                    itemStyle: {
-                        normal: {areaStyle: {type: 'default'}}
-                    },
-                    data:[710, 312, 321,754, 500, 830, 710, 521, 504, 660, 530, 410,710, 312, 321,754, 500, 830, 710, 521, 504, 660, 530, 410]
-                }
-            ]
-        };
-
-        // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
-        window.addEventListener("resize",function(){
-            myChart.resize();
-        });
-    }
-	function leida1(){
-	var myChart = echarts.init(document.getElementById('map'));
+	// function leida1(){
+	// var myChart = echarts.init(document.getElementById('map'));
 	
 	
-	myChart.setOption(option);
-	window.addEventListener("resize",function(){
-        myChart.resize();
-    });
+	// myChart.setOption(option);
+	// window.addEventListener("resize",function(){
+    //     myChart.resize();
+    // });
 	 
-	}
+	// }
 	
 	
 })
@@ -400,7 +270,7 @@ function map(){
 		    name: "北京TopFive",
 		    coords: [
 		        [116.24, 39.55, 100],
-		        [120.24, 46.55, 100]
+		        [120.24, 40.55, 100]
 		    ], // 线条位置[开始位置，结束位置]
 		    value: ['汉堡王:700099', '南香城（和平里店）：500099','西贝莜面村(北京大悦城店)：500099',"三泉冷面(朝外店): 400099","付小姐在成都：400099"]
 		}, 
@@ -432,7 +302,7 @@ function map(){
 				name: "上海TopFive",
 				coords: [
 					[121.4648, 31.2891],
-					[122.4648, 32.2891]
+					[122.4648, 30.2891]
 				], // 线条位置[开始位置，结束位置]
 				value: ["小桃园（复兴中路店）：999999","零度低卡轻食沙拉：900099","懒猴子泡馍：800099","南星汇海南鸡饭：800099","博多新记粤菜馆：800099"]
 			},
@@ -444,7 +314,7 @@ function map(){
 		        map: 'china',
 		        aspectScale: 0.85,
 		        layoutCenter: ["50%", "50%"], //地图位置
-		        layoutSize: '75%',
+		        layoutSize: '100%',
 		        itemStyle: {
 		            normal: {
 		                shadowColor: '#276fce',
@@ -673,7 +543,7 @@ function map(){
 // 	// var imgPath = ['http://bmob-cdn-15355.b0.upaiyun.com/2017/12/01/bee4341c4089af7980b87074a77479ad.png']
 // 	var myChart = echarts.init(document.getElementById('leida'));
 // 	option = {
-//
+
 // 	    color: ['#00c2ff', '#f9cf67', '#e92b77'],
 // 	    legend: {
 // 	        show: true,
@@ -690,7 +560,7 @@ function map(){
 // 	        data: ['2016', '2017', '2018'],
 // 	    },
 // 	    radar: [{
-//
+
 // 	        indicator: [{
 // 	                text: '重庆市',
 // 	                max: 2000000
@@ -712,7 +582,7 @@ function map(){
 // 	                max: 2000000
 // 	            }
 // 	        ],
-//
+
 // 	        textStyle: {
 // 	            color: 'red'
 // 	        },
@@ -887,8 +757,8 @@ function map(){
 // 	        }]
 // 	    }, ]
 // 	};
-//
-//
+
+
 // 	myChart.setOption(option);
 // }
 function wuran2(){
