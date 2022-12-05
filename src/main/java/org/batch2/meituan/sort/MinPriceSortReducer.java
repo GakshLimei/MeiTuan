@@ -12,7 +12,7 @@ import java.io.IOException;
  * @date: 2022年12月05日 14:48
  * @desc:
  */
-public class NewSortReducer extends Reducer<CovidCountBean4, Text,Text,CovidCountBean4> {
+public class MinPriceSortReducer extends Reducer<CovidCountBean4, Text,Text,CovidCountBean4> {
 
     @Override
     protected void reduce(CovidCountBean4 key, Iterable<Text> values, Context context) throws IOException, InterruptedException {

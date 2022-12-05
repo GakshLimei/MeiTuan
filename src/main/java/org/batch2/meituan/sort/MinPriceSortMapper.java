@@ -17,7 +17,7 @@ import java.io.IOException;
  *  如果你的需求中需要根据某个属性进行排序 ，不妨把这个属性作为key。因为MapReduce中key有默认排序行为的。但是需要进行如下考虑：
  *  如果你的需求是正序，并且数据类型是Hadoop封装好的基本类型。这种情况下不需要任何修改，直接使用基本类型作为key即可。因为Hadoop封装好的类型已经实现了排序规则。
  */
-public class NewSortMapper extends Mapper<LongWritable, Text, CovidCountBean4, Text> {
+public class MinPriceSortMapper extends Mapper<LongWritable, Text, CovidCountBean4, Text> {
 
     /**
      * 3、创建输出对象

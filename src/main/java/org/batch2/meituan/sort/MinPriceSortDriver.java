@@ -15,7 +15,7 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
  * @date: 2022年12月05日 14:50
  * @desc:
  */
-public class NewSortDriver {
+public class MinPriceSortDriver {
 
     public static void main(String[] args) throws Exception {
 
@@ -23,14 +23,14 @@ public class NewSortDriver {
         Configuration conf = new Configuration();
 
         //构造job作业的实例,参数（配置对象，job名字）
-        Job job = Job.getInstance(conf, NewSortDriver.class.getSimpleName());
+        Job job = Job.getInstance(conf, MinPriceSortDriver.class.getSimpleName());
 
         //设置mr程序运行的主类
-        job.setJarByClass(NewSortDriver.class);
+        job.setJarByClass(MinPriceSortDriver.class);
 
         //设置本次mr程序的mapper类型、reducer类型
-        job.setMapperClass(NewSortMapper.class);
-        job.setReducerClass(NewSortReducer.class);
+        job.setMapperClass(MinPriceSortMapper.class);
+        job.setReducerClass(MinPriceSortReducer.class);
 
         //指定mapper阶段输出的key value数据类型
         job.setMapOutputKeyClass(CovidCountBean4.class);
