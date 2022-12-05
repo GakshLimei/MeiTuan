@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>美团大数据可视化大屏</title>
     <link rel="stylesheet" href="css/index.css">
-    <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script src="js/jquery-2.1.1.min.js"></script>
 </head>
 <body>
 
@@ -55,6 +55,10 @@
 
             <div class="center-body">
                 <div class="map" id="map"></div>
+                <div class="cen-bottom public-bg">
+                    <div class="public-title">各省市最小售价、配送费总和</div>
+                    <div id="zhexian" class="charts"></div>
+                </div>
             </div>
 
             <div class="right-body">
@@ -108,8 +112,8 @@
                     <div class="title-nav" id="huaxing"></div>
                 </div>
                 <div class="right-bottom public-bg">
-                    <div class="public-title">各省市最小售价及配送费总和</div>
-                    <div class="title-nav" id="zhexian"></div>
+                    <div class="public-title">订单地区占比</div>
+                    <div class="title-nav" id="echarts_1"></div>
                 </div>
             </div>
         </div>
@@ -119,10 +123,9 @@
 </body>
 </html>
 
-<script src="https://www.jq22.com/jquery/echarts-4.2.1.min.js"></script>
+<script src="js/echarts.min.js"></script>
 <script type="text/javascript" src="js/china.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
-
 <script>
     //顶部时间
     function getTime(){
