@@ -2,8 +2,6 @@ $(function(){
 
 	echarts_1();
 	map();
-	// echarts_3();
-    //leidatu();
 	wuran2()
     wuran();
     huaxing();
@@ -222,16 +220,6 @@ $(function(){
 
 }
 
-	// function leida1(){
-	// var myChart = echarts.init(document.getElementById('map'));
-	
-	
-	// myChart.setOption(option);
-	// window.addEventListener("resize",function(){
-    //     myChart.resize();
-    // });
-	 
-	// }
 	
 	
 })
