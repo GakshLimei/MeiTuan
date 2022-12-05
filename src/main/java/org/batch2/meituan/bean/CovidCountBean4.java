@@ -8,15 +8,15 @@ import java.io.IOException;
 
 public class CovidCountBean4 implements WritableComparable<CovidCountBean4> {
 
-    private double Score;//
+    private double minPrice;//
     private double Comment_number;//
 
     public CovidCountBean4(){
 
     }
 
-    public CovidCountBean4(double Score, double Comment_number) {
-        this.Score = Score;
+    public CovidCountBean4(double minPrice, double Comment_number) {
+        this.minPrice = minPrice;
         this.Comment_number = Comment_number;
     }
 
@@ -24,21 +24,19 @@ public class CovidCountBean4 implements WritableComparable<CovidCountBean4> {
      *对有参构造进行修改，提供一个set方法
      * 自己封装对象的set方法，用于对象属性赋值
      */
-    public void set(double Score, double Comment_number) {
-        this.Score = Score;
+    public void set(double minPrice, double Comment_number) {
+        this.minPrice = minPrice;
         this.Comment_number = Comment_number;
     }
 
     //3、set和get方法
 
 
-    public double getScore() {
-        return Score;
+    public double getMinPrice() {
+        return minPrice;
     }
 
-    public void setScore(double score) {
-        Score = score;
-    }
+    public void setMinPrice(double minPrice) { minPrice = minPrice; }
 
     public double getComment_number() {
         return Comment_number;
@@ -52,19 +50,19 @@ public class CovidCountBean4 implements WritableComparable<CovidCountBean4> {
 
     @Override
     public String toString() {
-        return Score + "\t" + Comment_number;
+        return minPrice + "\t" + Comment_number;
 
     }
 
     @Override
     public void write(DataOutput dataOutput) throws IOException {
-        dataOutput.writeDouble(Score);
+        dataOutput.writeDouble(minPrice);
         dataOutput.writeDouble(Comment_number);
     }
 
     @Override
     public void readFields(DataInput dataInput) throws IOException {
-        this.Score = dataInput.readDouble();
+        this.minPrice = dataInput.readDouble();
         this.Comment_number = dataInput.readDouble();
     }
 
@@ -79,6 +77,6 @@ public class CovidCountBean4 implements WritableComparable<CovidCountBean4> {
      */
     @Override
     public int compareTo(CovidCountBean4 o) {
-        return this.Score - o.getScore() > 0 ? -1 : (this.Score - o.getScore() < 0 ? 1 : 0) ;
+        return this.minPrice - o.getMinPrice() > 0 ? -1 : (this.minPrice - o.getMinPrice() < 0 ? 1 : 0) ;
     }
 }
