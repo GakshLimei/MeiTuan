@@ -8,8 +8,8 @@ import org.apache.hadoop.mapreduce.Reducer;
 import java.io.IOException;
 
 /**
- * @author:Ys
- * @date: 2022年08月11日 14:48
+ * @author:Lawrence
+ * @date: 2022年12月05日 14:48
  * @desc:
  */
 public class New1Reducer extends Reducer<CovidCountBean4, Text,Text,CovidCountBean4> {

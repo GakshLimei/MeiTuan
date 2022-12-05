@@ -9,8 +9,8 @@ import org.apache.hadoop.mapreduce.Mapper;
 import java.io.IOException;
 
 /**
- * @author:Ys
- * @date: 2022年08月11日 14:46
+ * @author:Lawrence
+ * @date: 2022年12月05日 14:46
  * @desc:
  *  需求：将每个州累计确诊病例，每个州state的确诊案例数进行倒序排序。
  * 分析：

@@ -11,8 +11,8 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 /**
- * @author:Ys
- * @date: 2022年08月11日 14:50
+ * @author:Lawrence
+ * @date: 2022年12月05日 14:50
  * @desc:
  */
 public class New1Driver {
