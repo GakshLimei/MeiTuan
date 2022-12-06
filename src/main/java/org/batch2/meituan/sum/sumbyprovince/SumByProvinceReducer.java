@@ -26,7 +26,7 @@ public class SumByProvinceReducer extends Reducer<Text, SumBean, Text, SumBean> 
         double totalDeliveryFee = 0;//累计配送费
 
         /**
-         * 遍历该市的数据
+         * 遍历该省的数据
          */
         for (SumBean value : values) {
 
