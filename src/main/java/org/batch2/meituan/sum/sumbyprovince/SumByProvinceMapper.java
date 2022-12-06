@@ -30,11 +30,13 @@ public class SumByProvinceMapper extends Mapper<LongWritable, Text, Text, SumBea
 
         String province = fields[5];
         outKey.set(province);
-        //获得确诊数 并转换为数字的long类型
+        //获得月销量 并转换为数字的long类型
         long monthSales = Long.parseLong(fields[11]);
-        //获得死亡数 并转换为数字的long类型
+        //获得评论数 并转换为数字的long类型
         long ratingAmounts = Long.parseLong(fields[16]);
+        //获得最小价格数 并转换为double类型
         double minPrice = Double.parseDouble(fields[12]);
+        //获得最配送费 并转换为double类型
         double deliveryFee = Double.parseDouble(fields[13]);
         outValue.set(monthSales, ratingAmounts, minPrice, deliveryFee);
 

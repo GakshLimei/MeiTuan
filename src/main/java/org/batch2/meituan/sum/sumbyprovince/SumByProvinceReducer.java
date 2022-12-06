@@ -17,13 +17,17 @@ public class SumByProvinceReducer extends Reducer<Text, SumBean, Text, SumBean> 
 
     @Override
     protected void reduce(Text key, Iterable<SumBean> values, Context context) throws IOException, InterruptedException {
-
+        /**
+         * 创建统计变量
+         */
         long totalMonthSales = 0;//累计月销量
         long totalRatingAmounts = 0;//累计评论数
         double totalMinPrice = 0;//累计最小价格
         double totalDeliveryFee = 0;//累计配送费
 
-
+        /**
+         * 遍历该市的数据
+         */
         for (SumBean value : values) {
 
             totalMonthSales += value.getMonthSales();
