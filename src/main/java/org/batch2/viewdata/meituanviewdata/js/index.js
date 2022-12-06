@@ -1,5 +1,4 @@
 $(function(){
-
 	echarts_1();
 	map();
 	wuran2()
@@ -753,7 +752,7 @@ function wuran2(){
 
 	var myChart = echarts.init(document.getElementById('wuran2'));
 	var salvProName =["上海市","武汉市","南京市","长沙市","杭州市","成都市"];
-	var salvProValue =[1556913,802931,746166,664179,458149,636541];
+	var salvProValue =[76445046,62973042,48299174,48018863,44250063,43802113];
 	var salvProMax =[];//背景按最大值
 	for (let i = 0; i < salvProValue.length; i++) {
 		salvProMax.push(salvProValue[0])
@@ -857,8 +856,8 @@ function wuran2(){
 function wuran(){
 
 	var myChart = echarts.init(document.getElementById('wuran'));
-	var salvProName =["上海市","武汉市","南京市","长沙市","杭州市","成都市"];
-	var salvProValue =[76445046,62973042,48299174,48018863,44250063,43802113];
+	var salvProName =["上海市","广东省","湖北省","江苏省","湖南省","浙江省"];
+	var salvProValue =[76445046,65728939,62973042,48299174,48018863,44260567];
 	var salvProMax =[];//背景按最大值
 	for (let i = 0; i < salvProValue.length; i++) {
 	    salvProMax.push(salvProValue[0])
