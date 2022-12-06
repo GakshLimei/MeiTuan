@@ -12,10 +12,7 @@ import java.io.IOException;
  * @author:Lawrence
  * @date: 2022年12月05日 14:46
  * @desc:
- *  需求：将每个州累计确诊病例，每个州state的确诊案例数进行倒序排序。
- * 分析：
- *  如果你的需求中需要根据某个属性进行排序 ，不妨把这个属性作为key。因为MapReduce中key有默认排序行为的。但是需要进行如下考虑：
- *  如果你的需求是正序，并且数据类型是Hadoop封装好的基本类型。这种情况下不需要任何修改，直接使用基本类型作为key即可。因为Hadoop封装好的类型已经实现了排序规则。
+ 则。
  */
 public class MinPriceSortMapper extends Mapper<LongWritable, Text, CovidCountBean4, Text> {
 
@@ -36,7 +33,7 @@ public class MinPriceSortMapper extends Mapper<LongWritable, Text, CovidCountBea
         /**
          * 2、读取一行数据进行切割
          */
-        String[] fields = value.toString().split("\t");
+        String[] fields = value.toString().split("\t");//以空格区分每个字符串
         String state = fields[0];
         double minPrice = Double.parseDouble(fields[3]);
         double Comment_number =Double.parseDouble(fields[4]);
