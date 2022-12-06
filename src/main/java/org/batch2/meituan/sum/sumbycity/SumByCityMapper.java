@@ -14,7 +14,7 @@ import java.io.IOException;
  * @desc: 需求：统计每个州累计确诊病例。
  * 分析：
  * 自定义一个对象CovidCountBean，用于封装每个县的确诊病例数和死亡病例数。注意需要实现hadoop的序列化机制。
- * 以州state作为map阶段输出的key,以CovidCountBean作为value，
+ * 以州city作为map阶段输出的key,以SumBean作为value，
  * 这样经过MapReduce的默认排序分组规则，属于同一个州的数据就会变成一组进行reduce处理，
  * 进行累加即可得出每个州累计确诊病例。
  */
@@ -47,7 +47,9 @@ public class SumByCityMapper extends Mapper<LongWritable, Text, Text, SumBean> {
         long monthSales = Long.parseLong(fields[11]);
         //获得死亡数 并转换为数字的long类型
         long ratingAmounts = Long.parseLong(fields[16]);
+        //获得最小价格数 并转换为double类型
         double minPrice = Double.parseDouble(fields[12]);
+        //获得最配送费 并转换为double类型
         double deliveryFee = Double.parseDouble(fields[13]);
         outValue.set(monthSales, ratingAmounts, minPrice, deliveryFee);
 
