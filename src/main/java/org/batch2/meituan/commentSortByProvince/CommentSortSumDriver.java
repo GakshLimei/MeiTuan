@@ -1,6 +1,7 @@
-package org.batch2.meituan.sortold;
+package org.batch2.meituan.commentSortByProvince;
 
 
+import org.batch2.meituan.bean.CommentSortByProvinceBean;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
@@ -8,11 +9,11 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
-import org.batch2.meituan.bean.CommentCountBean2;
+
 
 /**
  * @author:Gary
- * @date: 2022年11月2日 14:50
+ * @date: 2022年09月25日 14:50
  * @desc:
  */
 public class CommentSortSumDriver {
@@ -33,17 +34,17 @@ public class CommentSortSumDriver {
         job.setReducerClass(CommentSortSumReducer.class);
 
         //指定mapper阶段输出的key value数据类型
-        job.setMapOutputKeyClass(CommentCountBean2.class);
+        job.setMapOutputKeyClass(CommentSortByProvinceBean.class);
         job.setMapOutputValueClass(Text.class);
 
         //指定reducer阶段输出的key value数据类型，也是mr程序最终的输出数据类型
         job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(CommentCountBean2.class);
+        job.setOutputValueClass(CommentSortByProvinceBean.class);
 
 
         //配置本次作业的输入数据路径和输出数据路径
-        Path inputPath = new Path("output/meituan/sum");
-        Path outputPath = new Path("output/meituan/sort");
+        Path inputPath = new Path("output/meituan/sumbycity");
+        Path outputPath = new Path("output/meituan/commentsortsum");
 
         //todo 默认组件 TextInputFormat TextOutputFormat
         FileInputFormat.setInputPaths(job, inputPath);
