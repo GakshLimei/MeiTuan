@@ -16,16 +16,13 @@ public class ProvincePartitionMapper extends Mapper<LongWritable, Text,Text,Text
     Text outKey = new Text();
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-        //1、切割，为了拿到州
+
         String[] lines = value.toString().split(",");
 
-        //2、以州作为key，参与分区，通过自定义分区，同一个州的数据到同一个分区同一个reducetask处理
         String state = lines[2];
 
-        //3、赋值
         outKey.set(state);
 
-        //4、写出去
         context.write(outKey,value);
 
 
