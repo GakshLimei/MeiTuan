@@ -1,4 +1,4 @@
-package org.batch2.meituan.commentSortByCity;
+package org.batch2.meituan.sort.commentSortByCity;
 
 
 import org.apache.hadoop.io.Text;

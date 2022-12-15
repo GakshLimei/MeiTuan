@@ -1,4 +1,4 @@
-package org.batch2.meituan.commentSortByProvince;
+package org.batch2.meituan.sort.commentSortByProvince;
 
 
 import org.apache.hadoop.io.LongWritable;
