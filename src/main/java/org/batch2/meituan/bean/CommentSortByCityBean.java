@@ -1,6 +1,6 @@
 package org.batch2.meituan.bean;
 
-import org.apache.hadoop.io.Writable;
+import org.apache.hadoop.io.WritableComparable;
 
 import java.io.DataInput;
 import java.io.DataOutput;
@@ -8,22 +8,25 @@ import java.io.IOException;
 
 /**
  * @author:Ys
- * @date: 2022年08月11日 13:58
- * @desc:自定义对象作为数据类型在MR中传递
+ * @date: 2022年08月11日 14:40
+ * @desc:
  */
-public class CommentCountBean implements Writable {
+public class CommentSortByCityBean implements WritableComparable<CommentSortByCityBean> {
 
-    private long cases;//累计出售数
-    private long comments;//累计评论数
+    //1、封装私有的属性
+    private long cases; //月销量
+    private long comments;  //评论数
 
-    public CommentCountBean() {
-
+    //2、有参无参构造
+    public CommentSortByCityBean() {
     }
 
-    public CommentCountBean(long cases, long comments) {
+    public CommentSortByCityBean(long cases, long comments) {
         this.cases = cases;
         this.comments = comments;
     }
+
+
 
     /**
      * 对有参构造进行修改，提供一个set方法
@@ -47,6 +50,7 @@ public class CommentCountBean implements Writable {
     public long getComments() {
         return comments;
     }
+
     public void setComments(long comments) {
         this.comments = comments;
     }
@@ -75,5 +79,15 @@ public class CommentCountBean implements Writable {
     public void readFields(DataInput dataInput) throws IOException {
         this.cases = dataInput.readLong();
         this.comments = dataInput.readLong();
+    }
+
+    /**
+     * 自定义对象的排序方法
+     * 返回结果： 0 相等， 负数 小于， 正数 大于
+     * 倒序精髓：如果大于，强制返回负数； 如果小于，强制返回正数
+     */
+    @Override
+    public int compareTo(CommentSortByCityBean o) {
+        return this.cases - o.getCases() > 0 ? -1 : (this.cases - o.getCases() < 0 ? 1 : 0);
     }
 }

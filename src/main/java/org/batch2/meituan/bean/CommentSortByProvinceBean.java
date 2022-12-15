@@ -14,8 +14,8 @@ import java.io.IOException;
 public class CommentSortByProvinceBean implements WritableComparable<CommentSortByProvinceBean> {
 
     //1、封装私有的属性
-    private long cases; //确诊病例数
-    private long comments;  //死亡病例数
+    private long cases; //月销量
+    private long comments;  //评论数
 
     //2、有参无参构造
     public CommentSortByProvinceBean() {
