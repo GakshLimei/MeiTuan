@@ -1,4 +1,4 @@
-package org.batch2.meituan.sum;
+package org.batch2.meituan.sum.sumall;
 
 /**
  * @author:Gary
@@ -21,7 +21,7 @@ import org.batch2.meituan.bean.SumBean;
  * 主要是构造Job对象实例
  * 指定各种组件属性：mapper、reducer类，输入输出的数据类型，输入输出的数据路径，提交job作业（job.submit()）
  */
-public class SumDriver {
+public class SumAllDriver {
 
     public static void main(String[] args) throws Exception {
 
@@ -29,14 +29,14 @@ public class SumDriver {
         Configuration conf = new Configuration();
 
         //构造job作业的实例,参数（配置对象，job名字）
-        Job job = Job.getInstance(conf, SumDriver.class.getSimpleName());
+        Job job = Job.getInstance(conf, SumAllDriver.class.getSimpleName());
 
         //设置mr程序运行的主类
-        job.setJarByClass(SumDriver.class);
+        job.setJarByClass(SumAllDriver.class);
 
         //设置本次mr程序的mapper类型、reducer类型
-        job.setMapperClass(SumMapper.class);
-        job.setReducerClass(SumReducer.class);
+        job.setMapperClass(SumAllMapper.class);
+        job.setReducerClass(SumAllReducer.class);
 
         //指定mapper阶段输出的key value数据类型
         job.setMapOutputKeyClass(Text.class);

@@ -1,4 +1,4 @@
-package org.batch2.meituan.sum;
+package org.batch2.meituan.sum.sumall;
 
 
 import org.apache.hadoop.io.Text;
@@ -12,7 +12,7 @@ import java.io.IOException;
  * @date: 2022年11月4日 14:07
  * @desc:
  */
-public class SumReducer extends Reducer<Text, SumBean, Text, SumBean> {
+public class SumAllReducer extends Reducer<Text, SumBean, Text, SumBean> {
     SumBean outValue = new SumBean();
 
     @Override
