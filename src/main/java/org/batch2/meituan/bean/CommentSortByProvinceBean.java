@@ -7,23 +7,26 @@ import java.io.DataOutput;
 import java.io.IOException;
 
 /**
- * @author:Gary
- * @date: 2022年11月3日 15:21
+ * @author:Ys
+ * @date: 2022年08月11日 14:40
  * @desc:
  */
-public class CommentCountBean2 implements WritableComparable<CommentCountBean2> {
+public class CommentSortByProvinceBean implements WritableComparable<CommentSortByProvinceBean> {
 
-    private long cases;//累计出售数
-    private long comments;//累计评论数
+    //1、封装私有的属性
+    private long cases; //确诊病例数
+    private long comments;  //死亡病例数
 
-    public CommentCountBean2() {
-
+    //2、有参无参构造
+    public CommentSortByProvinceBean() {
     }
 
-    public CommentCountBean2(long cases, long comments) {
+    public CommentSortByProvinceBean(long cases, long comments) {
         this.cases = cases;
         this.comments = comments;
     }
+
+
 
     /**
      * 对有参构造进行修改，提供一个set方法
@@ -84,7 +87,7 @@ public class CommentCountBean2 implements WritableComparable<CommentCountBean2> 
      * 倒序精髓：如果大于，强制返回负数； 如果小于，强制返回正数
      */
     @Override
-    public int compareTo(CommentCountBean2 o) {
+    public int compareTo(CommentSortByProvinceBean o) {
         return this.cases - o.getCases() > 0 ? -1 : (this.cases - o.getCases() < 0 ? 1 : 0);
     }
 }
