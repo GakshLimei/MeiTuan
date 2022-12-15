@@ -1,4 +1,4 @@
-package org.batch2.meituan.sort;
+package org.batch2.meituan.minpricesort;
 
 
 import org.batch2.meituan.bean.CovidCountBean4;

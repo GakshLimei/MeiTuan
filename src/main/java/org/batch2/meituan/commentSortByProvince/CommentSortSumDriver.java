@@ -43,8 +43,8 @@ public class CommentSortSumDriver {
 
 
         //配置本次作业的输入数据路径和输出数据路径
-        Path inputPath = new Path("output/meituan/sumbycity");
-        Path outputPath = new Path("output/meituan/commentsortsum");
+        Path inputPath = new Path("output/meituan/sumbyprovince");
+        Path outputPath = new Path("output/meituan/commentsortbyprovince");
 
         //todo 默认组件 TextInputFormat TextOutputFormat
         FileInputFormat.setInputPaths(job, inputPath);
