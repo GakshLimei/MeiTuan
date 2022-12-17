@@ -1,7 +1,7 @@
 package org.batch2.meituan.minpricesort;
 
 
-import org.batch2.meituan.bean.CovidCountBean4;
+import org.batch2.meituan.bean.MinPriceBean;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
@@ -33,11 +33,11 @@ public class MinPriceSortDriver {
         job.setReducerClass(MinPriceSortReducer.class);
 
         //指定mapper阶段输出的key value数据类型
-        job.setMapOutputKeyClass(CovidCountBean4.class);
+        job.setMapOutputKeyClass(MinPriceBean.class);
         job.setMapOutputValueClass(Text.class);
         //指定reducer阶段输出的key value数据类型，也是mr程序最终的输出数据类型
         job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(CovidCountBean4.class);
+        job.setOutputValueClass(MinPriceBean.class);
 
         //配置本次作业的输入数据路径和输出数据路径
         Path inputPath = new Path("output/meituan/sum");

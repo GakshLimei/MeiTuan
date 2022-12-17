@@ -1,7 +1,7 @@
 package org.batch2.meituan.minpricesort;
 
 
-import org.batch2.meituan.bean.CovidCountBean4;
+import org.batch2.meituan.bean.MinPriceBean;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
@@ -14,12 +14,12 @@ import java.io.IOException;
  * @desc:
  则。
  */
-public class MinPriceSortMapper extends Mapper<LongWritable, Text, CovidCountBean4, Text> {
+public class MinPriceSortMapper extends Mapper<LongWritable, Text, MinPriceBean, Text> {
 
     /**
      * 3、创建输出对象
      */
-    CovidCountBean4 outKey = new CovidCountBean4();
+    MinPriceBean outKey = new MinPriceBean();
     Text outValue = new Text();
 
 

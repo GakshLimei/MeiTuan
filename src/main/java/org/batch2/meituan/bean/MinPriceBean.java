@@ -6,16 +6,16 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-public class CovidCountBean4 implements WritableComparable<CovidCountBean4> {
+public class MinPriceBean implements WritableComparable<MinPriceBean> {
 
     private double minPrice;//
     private double Comment_number;//
 
-    public CovidCountBean4(){
+    public MinPriceBean(){
 
     }
 
-    public CovidCountBean4(double minPrice, double Comment_number) {
+    public MinPriceBean(double minPrice, double Comment_number) {
         this.minPrice = minPrice;
         this.Comment_number = Comment_number;
     }
@@ -76,7 +76,7 @@ public class CovidCountBean4 implements WritableComparable<CovidCountBean4> {
      * :的右边是指当条件成立时返回值
      */
     @Override
-    public int compareTo(CovidCountBean4 o) {
+    public int compareTo(MinPriceBean o) {
         return this.minPrice - o.getMinPrice() > 0 ? -1 : (this.minPrice - o.getMinPrice() < 0 ? 1 : 0) ;
     }
 }
