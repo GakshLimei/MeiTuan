@@ -1,4 +1,4 @@
-package org.batch2.meituan.minpricesort;
+package org.batch2.meituan.sort.minpricesort;
 
 
 import org.batch2.meituan.bean.MinPriceBean;
